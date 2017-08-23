@@ -1,4 +1,4 @@
-// GLOBAL RESETS AND FIXES 
+// GLOBAL RESETS AND FIXES
 try {
 
 	$('html').removeClass('shinelight');
@@ -20,7 +20,7 @@ function getQueryString(name) {
 }
 
 function IsJsonString(str) {
-    
+
     try {
         JSON.parse(str);
     } catch (e) {
@@ -54,7 +54,7 @@ function IsJsonString(str) {
 var currentSettings = {};
 
 // creating the default settings variable if they havn't saved any settings yet
-var defaultSettings = {"global" : {"layout" : "list", "shortcuts" : "show", "night" : "off", "analytics" : "shine-analytics-optin", "sidebar" : "", "multis" : ""},
+var defaultSettings = {"global" : {"layout" : "list", "shortcuts" : "show", "night" : "off", "sidebar" : "", "multis" : ""},
 
     "list" :  {"split" : "6040", "columns" : "one"},
 
@@ -72,7 +72,7 @@ var defaultSettings = {"global" : {"layout" : "list", "shortcuts" : "show", "nig
     	{"url" : "www.reddit.com/user/evilnight/m/redditunes", "layout" : "grid"},
     	{"url" : "www.reddit.com/user/Abbigale221/m/moviesandtv", "layout" : "list"},
     	{"url" : "www.reddit.com/r/silhouWHAT/", "layout" : "list"}
-    	
+
     ],
 
     "account" : {"status" : "shinebright"},
@@ -129,7 +129,7 @@ function SHINE(){
 		'<div class="dark-background"></div>'+
 
 		'<div class="shine-nav">'+
-			
+
 			'<div class="shine-menu-button shine-search">'+
 				'<label>search reddit</label>'+
 			'</div>'+
@@ -237,20 +237,12 @@ function SHINE(){
 					'</div>'+
 				'</div>'+
 				'<div class="settings-halves">'+
-					'<div class="settings-column-half">'+					
+					'<div class="settings-column-half">'+
 						'<label for="settings-shortcuts-bar">Shortcuts Bar</label>'+
 						'<span class="settings-small-print">Hide or show the shortcuts bar at the top.</span>'+
 						'<select name="settings-shortcuts-bar" id="settings-shortcuts-bar">'+
 							'<option value="show">Show</option>'+
 							'<option value="hide">Hide</option>'+
-						'</select>'+
-					'</div>'+
-					'<div class="settings-column-half">'+					
-						'<label for="settings-analytics">Google Analytics Tracking</label>'+
-						'<span class="settings-small-print">Turn on or off Google Analytics.</span>'+
-						'<select name="settings-analytics" id="settings-analytics">'+
-							'<option value="shine-analytics-optin">Opt In</option>'+
-							'<option value="shine-analytics-optout">Opt Out</option>'+
 						'</select>'+
 					'</div>'+
 				'</div>'+
@@ -372,18 +364,15 @@ function SHINE(){
 
 	$('#settings-list-layout').val( currentSettings.list.columns );
 
-	/* ANALYTICS */
 
-	$('#settings-analytics').val( currentSettings.global.analytics );
-	
 	/* GRID SPLIT */
-	
+
 	if( currentSettings.grid.split == "7030" || currentSettings.grid.split == "6040" || currentSettings.grid.split == "5050" || currentSettings.grid.split == "4060" || currentSettings.grid.split == "3070"){
 		$('#settings-grid-split').val( currentSettings.grid.split );
 	}
-	
+
 	/* LIST SPLIT */
-	
+
 	if( currentSettings.list.split == "7030" || currentSettings.list.split == "6040" || currentSettings.list.split == "5050" || currentSettings.list.split == "4060" || currentSettings.list.split == "3070"){
 		$('#settings-list-split').val( currentSettings.list.split );
 	}
@@ -410,8 +399,7 @@ function SHINE(){
 
 
 
-	// analytics class
-	$('html').addClass( currentSettings.global.analytics );
+
 
 
 
@@ -572,32 +560,32 @@ function SHINE(){
 				'</style>'
 
 			);
-			
+
 			if( currentSettings.grid.split == "7030" || currentSettings.grid.split == "6040" || currentSettings.grid.split == "5050" || currentSettings.grid.split == "4060" || currentSettings.grid.split == "3070"){
-				
+
 				$('html').addClass("shine-split-" + currentSettings.grid.split);
-				
+
 			}
-			
-			
+
+
 
 		}else if( whichView == "list" ){
 
 			if(currentSettings.list.columns == "two"){
 				$('html').addClass("shine-list-classic");
-			}			
+			}
 
 			$.getScript( chrome.extension.getURL("jquery.zoom.min.js") );
 			$.getScript( chrome.extension.getURL("shine-list.js") );
-			
+
 			if(currentSettings.list.split == "7030" || currentSettings.list.split == "6040" || currentSettings.list.split == "5050" || currentSettings.list.split == "4060" || currentSettings.list.split == "3070"){
-				
+
 				if( !$('html').hasClass("shine-list-classic") ){
 					$('html').addClass("shine-split-" + currentSettings.list.split);
-				}	
-				
+				}
+
 			}
-			
+
 
 		}
 
@@ -634,9 +622,9 @@ function SHINE(){
 	headLinks = $('head link');
 
 	for(i = 0;i<headLinks.length;i++){
-		
+
 		if( $(headLinks[i]).attr("title") == "applied_subreddit_stylesheet" ){
-			
+
 			subredditCss = $(headLinks[i]).attr("href");
 
 			$(headLinks[i]).remove();
@@ -645,23 +633,23 @@ function SHINE(){
 
 	}
 
-	
-	
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
     // LISTENING FOR MESSAGE FROM IFRAME
-    
+
     function listener(event){
-                    
+
         //time to shine bright
         $('#settings-default-view').removeAttr("disabled");
         $('#settings-night-mode').removeAttr("disabled");
@@ -673,14 +661,14 @@ function SHINE(){
         $('#settings-list-split').removeAttr("disabled");
 
         $('.header-shine-bright').remove();
-        
+
         $('html').removeClass('shinelight');
         $('html').addClass('shinebright');
-        
+
         currentSettings.account.status = "shinebright";
-        
+
         chrome.storage.sync.set({"shine": currentSettings}, function(){
-            
+
             replacePanel = ''+
             '<div class="shining-bright">'+
                 '<div id="sunburst"><img src="' + chrome.extension.getURL("sunburst.png") + '" /></div>'+
@@ -688,30 +676,30 @@ function SHINE(){
                 "<p>You've just unlocked the best way to experience all the delicious content reddit has to offer. You'll also have first access to all the sweet new features we'll be adding over the months and years to come. We are now massively in your debt and appreciate you supporting the hard work we've put into building SHINE. If you have any feedback or questions for us, please feel free to post in <a target='_blank' href='/r/shine'>/r/shine</a> or email us at <a target='_blank' href='mailto:shine@madewithgusto.com'>shine@madewithgusto.com</a></p><p><i>May the force be with you.</i></p><p>-The SHINE team at Gusto Creative House</p>"+
                 '<div id="shine-bright-logout">Logout of Shine Bright <img src="' + chrome.extension.getURL("logout.svg") + '" /></div>'+
             '</div>';
-            
+
             $('.shine-bright-panel').html(replacePanel);
 
         });
 
-            
+
     }
 
-    
+
     if (window.addEventListener){
-        
+
         addEventListener("message", listener, false);
-        
+
     } else {
-        
+
         attachEvent("onmessage", listener);
-        
+
     }
-	
+
 
 	//SHINE BRIGHT FORM
-    
+
     if( currentSettings.account.status == "shinebright" ){
-        
+
         $('body').append(''+
              '<div class="shine-bright-panel">'+
                 '<div class="shining-bright">'+
@@ -722,15 +710,15 @@ function SHINE(){
                 '</div>'+
              '</div>'
         );
-        
+
     }else{
-        
+
         $('body').append('<div class="shine-bright-panel"></div>');
-        
+
     }
 
 	$('body').on('click','.shine-prompt', function(e){
-        
+
         if( currentSettings.account.status == "shinelight" ){
             $('.shine-bright-panel').html('<iframe id="shine-bright-iframe" frameborder="0" height="100%" width="100%" src="https://madewithgusto.com/SHINE-IFRAME-CREATEACCOUNT.php" />');
         }
@@ -742,22 +730,22 @@ function SHINE(){
 		return false;
 
 	});
-    
+
     $('body').on('click','#shine-bright-logout', function(){
-       
+
         currentSettings.account.status = "shinelight";
-        
+
         chrome.storage.sync.set({"shine": currentSettings}, function(){
 
 			location.reload();
 
 		});
-        
+
     });
-    
-    
-    
-    
+
+
+
+
 
 
 
@@ -947,11 +935,11 @@ $('body').on('click','.shine-multi', function(){
 $('body').on('click','.shine-bright-nav', function(){
 
 	resetInterfaces();
-    
+
     if( currentSettings.account.status == "shinelight" ){
         $('.shine-bright-panel').html('<iframe id="shine-bright-iframe" frameborder="0" height="100%" width="100%" src="https://madewithgusto.com/SHINE-IFRAME-CREATEACCOUNT.php" />');
     }
-    
+
 	$('html').toggleClass("show-shine-bright");
 
 });
@@ -976,7 +964,7 @@ $('body').on('click','.shine-bright-nav', function(){
 function saveSettingsMessage(){
 
 	$('html').addClass("settings-are-saved");
-	setTimeout("jQuery('html').removeClass('settings-are-saved')", 2000);		
+	setTimeout("jQuery('html').removeClass('settings-are-saved')", 2000);
 
 }
 
@@ -998,17 +986,7 @@ $('body').on('click','.settings-panel .tab',function(){
 
 });
 
-$('body').on('change','#settings-analytics', function(){
 
-	currentSettings.global.analytics = $(this).val();
-
-	chrome.storage.sync.set({"shine": currentSettings}, function(){
-
-		saveSettingsMessage();
-
-	});
-
-});
 
 $('body').on('change','#settings-default-view', function(){
 
@@ -1078,13 +1056,13 @@ $('body').on('change','#settings-grid-split', function(){
 	currentSettings.grid.split = $(this).val();
 
 	chrome.storage.sync.set({"shine": currentSettings}, function(){
-		
+
 		if( $('html').hasClass("shine-grid") ){
 
 			$('html').removeClass("shine-split-7030 shine-split-6040 shine-split-5050 shine-split-4060 shine-split-3070");
-			
+
 			$('html').addClass("shine-split-" + currentSettings.grid.split);
-		
+
 		}
 
 		saveSettingsMessage();
@@ -1098,13 +1076,13 @@ $('body').on('change','#settings-list-split', function(){
 	currentSettings.list.split = $(this).val();
 
 	chrome.storage.sync.set({"shine": currentSettings}, function(){
-		
+
 		if( $('html').hasClass("shine-list") && !$('html').hasClass("shine-list-classic") ){
 
 			$('html').removeClass("shine-split-7030 shine-split-6040 shine-split-5050 shine-split-4060 shine-split-3070");
-			
+
 			$('html').addClass("shine-split-" + currentSettings.list.split);
-			
+
 		}
 
 		saveSettingsMessage();
@@ -1492,5 +1470,5 @@ $(window).scroll(function() {
 });
 
 } catch(e) {
-	
+
 }

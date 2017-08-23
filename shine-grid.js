@@ -1,84 +1,3 @@
-if( !$('html').hasClass("shine-analytics-optout") ){
-
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-54728545-4', 'auto');
-  ga('send', 'pageview', { 'page': window.location.href.replace("https://","") , 'title': document.title });
-
-
-  // Analytics What's Been Loaded
-  ga('send', 'event', 'LOAD' , 'GRID VIEW' , window.location.href.replace("https://","") );
-
-  if( $('html').hasClass("shinebright") ){
-  	ga('send', 'event', 'LOAD' , 'SHINE BRIGHT' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'SHINE LIGHT' , window.location.href.replace("https://","") );
-  }
-
-  if( $('html').hasClass("shine-hide-nsfw") ){
-  	ga('send', 'event', 'LOAD' , 'HIDE NSFW' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'SHOW NSFW' , window.location.href.replace("https://","") );
-  }
-
-  if( $('html').hasClass("show-shortcuts") ){
-  	ga('send', 'event', 'LOAD' , 'SHOW SHORTCUTS' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'HIDE SHORTCUTS' , window.location.href.replace("https://","") );
-  }
-
-  if( $('html').hasClass("show-sidebar") ){
-  	ga('send', 'event', 'LOAD' , 'SHOW SIDEBAR' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'HIDE SIDEBAR' , window.location.href.replace("https://","") );
-  }
-
-  if( $('html').hasClass("show-multireddits") ){
-  	ga('send', 'event', 'LOAD' , 'SHOW MULTIREDDITS' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'HIDE MULTIREDDITS' , window.location.href.replace("https://","") );
-  }
-
-  if( $('html').hasClass("res-nightmode") ){
-  	ga('send', 'event', 'LOAD' , 'NIGHTMODE' , window.location.href.replace("https://","") );
-  }else{
-  	ga('send', 'event', 'LOAD' , 'DAYMODE' , window.location.href.replace("https://","") );
-  }
-
-  ga('send', 'event', 'LOAD' , $('html').data('columns') + ' COLUMNS' , window.location.href.replace("https://","") );
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // all the functions at the top
 
 // imgur authorization
@@ -346,15 +265,15 @@ function getImageType(arrayBuffer){
 
 // this gets the ireddit picture url
 function getireddit(url, target){
-    
+
     $(target).find('.preview-replace').load(url + " img.preview", function() {
-        
+
         iredditUrl = $(this).find('img.preview').attr("src");
-                
+
         $(this).replaceWith("<div data-url='" + iredditUrl + "' class='preview preview-image' style='background-image:url(" + iredditUrl + ")'></div>");
 
     });
-    
+
 }
 
 
@@ -993,18 +912,18 @@ function createPreviews(theThings){
 
 		}
 
-        
-        
-        
+
+
+
         // i.reddit.com uploads
         else if( $(theThings[i]).find('span.domain a').html() == "i.redd.it" ){
-            
+
             url = url.split(/[?#]/)[0]; // REMOVES QUERY STRING AND HASH
-            
+
             $(theThings[i]).find(whereToPlace).append("<div class='preview preview-replace'></div>");
-            
+
             getireddit( url, ".id-" + $(theThings[i]).attr("data-fullname") );
-            
+
         }
 
 
@@ -1156,11 +1075,6 @@ if( $('body').hasClass('res') ){
 
 	window.addEventListener("neverEndingLoad", function() {
 
-        if( !$('html').hasClass("shine-analytics-optout") ){
-
-              ga('send', 'pageview', { 'page': window.location.href.replace("https://","") , 'title': document.title });
-
-        }
 
 		createPreviews( $('body > .content .sitetable.linklisting .thing').not(".shined") );
 
@@ -1189,11 +1103,7 @@ if( $('body').hasClass('res') ){
 		      cache: false,
 		      success: function(data) {
 
-              if( !$('html').hasClass("shine-analytics-optout") ){
 
-		      	     ga('send', 'pageview', { 'page': window.location.href.replace("https://","") , 'title': document.title });
-
-              }
 
 			     window.location.hash = "shiny=" + lastThing;
 
@@ -1476,12 +1386,6 @@ function loadSideComments(target, url){
 
 $('body').on('click','.preview-image', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'IMAGE' , $(this).data("url") , window.location.href.replace("https://","") );
-
-  }
-
 	resetInterfaces();
 
 	$('.shine-expand .large-image').css('background-image','url(' + $(this).data("url") + ')');
@@ -1501,11 +1405,6 @@ $('body').on('click','.preview-image', function(){
 
 $('body').on('click','.preview-youtube', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'YOUTUBE' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1522,11 +1421,6 @@ $('body').on('click','.preview-youtube', function(){
 
 $('body').on('click','.preview-gifv', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'GIF' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1543,11 +1437,6 @@ $('body').on('click','.preview-gifv', function(){
 
 $('body').on('click','.preview-gfycat', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'GFYCAT' , $(this).data("url") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1564,11 +1453,6 @@ $('body').on('click','.preview-gfycat', function(){
 
 $('body').on('click','.preview-vimeo', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'VIMEO' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1585,11 +1469,6 @@ $('body').on('click','.preview-vimeo', function(){
 
 $('body').on('click','.preview-album',function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'ALBUM' , $(this).data("album") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1604,11 +1483,6 @@ $('body').on('click','.preview-album',function(){
 
 $('body').on('click','.album-thumbnails img', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'THUMBNAIL' , $(this).data("image") , window.location.href.replace("https://","") );
-
-  }
 
 	$('.large-album').css("background-image", "url(" + $(this).data("image") + ")" );
 
@@ -1640,11 +1514,6 @@ $('body').on('click','.album-thumbnails img', function(){
 
 $('body').on('click','.show-captions',function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'CAPTIONS' , '' , window.location.href.replace("https://","") );
-
-  }
 
 	$('html').toggleClass("activate-captions");
 
@@ -1725,11 +1594,6 @@ $(document).keydown(function(e) {
 
 $('body').on('click','.preview-text',function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'TEXT' , $(this).parents(".thing").find('a.title').attr("href") , window.location.href.replace("https://","") );
-
-  }
 
 	$(this).parents('.thing').addClass("reading");
 
@@ -1737,12 +1601,6 @@ $('body').on('click','.preview-text',function(){
 
 
 $('body').on('click','.thing.shined a.comments', function(e){
-
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENTS' , $(this).parents(".thing").find('a.title').attr("href") , window.location.href.replace("https://","") );
-
-  }
 
 	resetInterfaces();
 
@@ -1971,11 +1829,6 @@ function replaceExpand(type,data,button){
 
 $('html').not('.shinelight').on('click','.comment-image:not(.closecommentmedia)',function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENT IMAGE' , $(this).data("image") , window.location.href.replace("https://","") );
-
-  }
 
   replaceExpand("image", $(this).data("image"), $(this) );
 
@@ -1990,11 +1843,6 @@ $('html').not('.shinelight').on('click','.comment-image:not(.closecommentmedia)'
 
 $('html').not('.shinelight').on('click','.comment-youtube:not(.closecommentmedia)',function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENT YOUTUBE' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
 
   replaceExpand("youtube", $(this).data("video"), $(this) );
 
@@ -2009,12 +1857,6 @@ $('html').not('.shinelight').on('click','.comment-youtube:not(.closecommentmedia
 
 $('html').not('.shinelight').on('click','.comment-html5:not(.closecommentmedia)', function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENT VIDEO' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
-
   replaceExpand("html5", $(this).data("video"), $(this) );
 
 	e.preventDefault();
@@ -2027,11 +1869,6 @@ $('html').not('.shinelight').on('click','.comment-html5:not(.closecommentmedia)'
 
 $('html').not('.shinelight').on('click','.comment-gfycat:not(.closecommentmedia)', function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENT GFYCAT' , $(this).data("video") , window.location.href.replace("https://","") );
-
-  }
 
   replaceExpand("gfycat", $(this).data("video"), $(this) );
 
@@ -2046,11 +1883,6 @@ $('html').not('.shinelight').on('click','.comment-gfycat:not(.closecommentmedia)
 
 $('html').not('.shinelight').on('click','.comment-album:not(.closecommentmedia)', function(e){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'COMMENT ALBUM' , $(this).data("album") , window.location.href.replace("https://","") );
-
-  }
 
   replaceExpand("album", $(this).data("album"), $(this) );
 
@@ -2076,11 +1908,6 @@ $('html').not('.shinelight').on('click','.closecommentmedia', function(e){
 
 $('body').on('click','.toggle-child-comments', function(){
 
-  if( !$('html').hasClass("shine-analytics-optout") ){
-
-	   ga('send', 'event', 'CHILD COMMENTS' , 'TOGGLE' , window.location.href.replace("https://","") );
-
-  }
 
 	$('html').toggleClass("shine-hide-children");
 
@@ -2090,22 +1917,12 @@ $('body').on('click','.inline-child-toggle', function(){
 
 	if( !$(this).parents('.been-shined').hasClass("show-child-comments") ){
 
-    if( !$('html').hasClass("shine-analytics-optout") ){
-
-		    ga('send', 'event', 'CHILD COMMENTS' , 'SHOW' , window.location.href.replace("https://","") );
-
-    }
 
 		$(this).parents('.been-shined').addClass("show-child-comments");
 		$(this).parents('.been-shined').removeClass("hide-child-comments");
 
 	}else{
 
-    if( !$('html').hasClass("shine-analytics-optout") ){
-
-		    ga('send', 'event', 'CHILD COMMENTS' , 'HIDE' , window.location.href.replace("https://","") );
-
-    }
 
 		$(this).parents('.been-shined').removeClass("show-child-comments");
 		$(this).parents('.been-shined').addClass("hide-child-comments");
@@ -2155,127 +1972,3 @@ if( $('html').hasClass("shinelight") ){
 }
 
 */
-
-
-
-
-
-
-
-
-
-
-
-/* EXTRA ANALYTICS */
-
-if( !$('html').hasClass("shine-analytics-optout") ){
-
-  $('body').on('click','a.title',function(){
-
-  	ga('send', 'event', 'LINK' , $(this).attr("href") , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.arrow.upmod', function(){
-
-  	ga('send', 'event', 'UPVOTE' , $(this).parents('.thing').find('a.title').attr("href") , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.arrow.downmod', function(){
-
-  	ga('send', 'event', 'DOWNVOTE' , $(this).parents('.thing').find('a.title').attr("href") , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.list-switch', function(){
-
-  	ga('send', 'event', 'SWITCH' , "LIST VIEW" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.grid-switch', function(){
-
-  	ga('send', 'event', 'SWITCH' , "GRID VIEW" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.shine-navicon', function(){
-
-  	if( $('html').hasClass("shine-menu") ){
-  		ga('send', 'event', 'NAV' , "CLOSE NAV" , window.location.href.replace("https://","") );
-  	}else{
-  		ga('send', 'event', 'NAV' , "OPEN NAV" , window.location.href.replace("https://","") );
-  	}
-
-  });
-
-  $('body').on('click','.shine-submit', function(){
-
-  	ga('send', 'event', 'NAV' , "SUBMIT" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.shine-sidebar', function(){
-
-  	if( $('html').hasClass("show-sidebar") ){
-  		ga('send', 'event', 'NAV' , "HIDE SIDEBAR" , window.location.href.replace("https://","") );
-  	}else{
-  		ga('send', 'event', 'NAV' , "SHOW SIDEBAR" , window.location.href.replace("https://","") );
-  	}
-
-  });
-
-  $('body').on('click','.shine-multi', function(){
-
-  	if( $('html').hasClass("show-multireddits") ){
-  		ga('send', 'event', 'NAV' , "HIDE MULTIREDDITS" , window.location.href.replace("https://","") );
-  	}else{
-  		ga('send', 'event', 'NAV' , "SHOW MULTIREDDITS" , window.location.href.replace("https://","") );
-  	}
-
-  });
-
-  $('body').on('click','.shine-settings', function(){
-
-  	ga('send', 'event', 'NAV' , "SETTINGS" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.shine-search', function(){
-
-  	ga('send', 'event', 'NAV' , "SEARCH" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.shine-bright-nav', function(){
-
-  	ga('send', 'event', 'NAV' , "SHINE BRIGHT" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','#shine-bright-logout', function(){
-
-  	ga('send', 'event', 'SHINE BRIGHT' , "LOGOUT" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','#shine-bright-login', function(){
-
-  	ga('send', 'event', 'SHINE BRIGHT' , "LOGIN" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','#shine-remind-me', function(){
-
-  	ga('send', 'event', 'SHINE BRIGHT' , "FORGOT" , window.location.href.replace("https://","") );
-
-  });
-
-  $('body').on('click','.shine-prompt', function(){
-
-  	ga('send', 'event', 'SHINE BRIGHT' , "PROMPT" , window.location.href.replace("https://","") );
-
-  });
-
-}
