@@ -984,7 +984,18 @@ $('body').on('click','div.content div#siteTable.linklisting > .thing:not(.shine-
 
 
 
+    else if( url.toLowerCase().indexOf("streamable.com") != -1 ){
+      url = url.split(/[?#]/)[0]; // REMOVES QUERY STRING AND HASH
+			url = decodeURIComponent(url);
+      shortcode = url.substr(url.toLowerCase().indexOf("streamable.com/") + 15);
 
+      $(theExpand).find(".large-area").html('<div class="large-youtube"><iframe frameborder="0" allowfullscreen src="https://streamable.com/s/'+shortcode+'" /></div>');
+
+      $(theExpand).attr("data-original-type", "streamable");
+			$(theExpand).attr("data-original-data", shortcode + '/omydpg');
+
+
+		}
 
 
 		//YOUTUBE SHARE
