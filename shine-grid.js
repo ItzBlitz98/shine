@@ -892,7 +892,15 @@ function createPreviews(theThings){
 		}
 
 
+    else if(url.toLowerCase().indexOf("streamable.com") != -1){
 
+      url = url.split(/[?#]/)[0]; // REMOVES QUERY STRING AND HASH
+			url = decodeURIComponent(url);
+      shortcode = url.substr(url.toLowerCase().indexOf("streamable.com/") + 15);
+      $(theThings[i]).find(whereToPlace).append("<div style='background-image:url(//cdn-e2.streamable.com/image/"+ shortcode +".jpg)' class='preview preview-youtube' data-video='https://streamable.com/s/" + shortcode + "'></div>");
+
+
+		}
 
 
 
