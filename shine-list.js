@@ -674,7 +674,7 @@ $('body').on('click','div.content div#siteTable.linklisting > .thing:not(.shine-
 				      			captionDescription = captionDescription.replace('"',"'");
       						}
 
-      						$(theExpand).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link.replace("http","https") + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
+      						$(theExpand).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
 
 				      	}
 
@@ -767,15 +767,15 @@ $('body').on('click','div.content div#siteTable.linklisting > .thing:not(.shine-
                                             captionDescription = captionDescription.replace('"',"'");
                                         }
 
-                                        $(theExpand).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link.replace("http","https") + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
+                                        $(theExpand).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
 
                                     }
 
                                     $(theExpand).find('.album-thumbnails').find("img").first().addClass("active-thumb");
 
-                                    $(theExpand).find('.large-album').css("background-image", "url(" + data.data[0].link.replace("http","https") + ")" );
-
-                                    $(theExpand).find('.large-album').zoom({url: data.data[0].link.replace("http","https"), on: 'click'});
+                                    $(theExpand).find('.large-album').css("background-image", "url(" + data.data[0].link + ")" );
+console.log(data.data[0].link);
+                                    $(theExpand).find('.large-album').zoom({url: data.data[0].link, on: 'click'});
 
                                     if( data.data[0].title != null || data.data[0].description != null ){
 
@@ -805,7 +805,7 @@ $('body').on('click','div.content div#siteTable.linklisting > .thing:not(.shine-
 
                       }else{
 
-                            getImageFromServer( data.data.images[0].link.replace("http","https") , data.data.images[0].id , theExpand);
+                            getImageFromServer( data.data.images[0].link , data.data.images[0].id , theExpand);
 
                       }
 
@@ -1422,16 +1422,16 @@ function getCommentAlbumImages( api, target ){
       			captionDescription = captionDescription.replace('"',"'");
 			}
 
-			$(target).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link.replace("http","https") + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
+			$(target).find('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
 
       	}
 
       	$(target).find('.album-thumbnails img').first().addClass("active-thumb");
 
-      	$(target).find('.large-album').css("background-image", "url(" + data.data[0].link.replace("http","https") + ")" );
+      	$(target).find('.large-album').css("background-image", "url(" + data.data[0].link + ")" );
 
-      	$(target).find('.large-album').zoom({url: data.data[0].link.replace("http","https"), on: 'click'});
-
+      	$(target).find('.large-album').zoom({url: data.data[0].link, on: 'click'});
+        console.log(data.data[0].link);
       	if( data.data[0].title != null || data.data[0].description != null ){
 
       		$(target).find('.album-captions').html('<div class="show-captions"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-291 389 20 16" style="enable-background:new -291 389 20 16;" xml:space="preserve"><path d="M-273,389h-16c-1.1,0-2,0.9-2,2v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2v-12C-271,389.9-271.9,389-273,389z M-289,397h4v2h-4V397z M-279,403h-10v-2h10V403z M-273,403h-4v-2h4V403z M-273,399h-10v-2h10V399z"/></svg></div><div class="caption-text"><strong></strong><p></p></div>');

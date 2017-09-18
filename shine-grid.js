@@ -42,7 +42,7 @@ function getAlbumImage(api, target){
       dataType: 'json',
       success: function(data) {
 
-      	$(target).find('.preview-replace, .preview-album').replaceWith("<div data-album='" + api + "' class='preview preview-album' style='background-image:url(" + data.data[0].link.replace("http","https") + ")'></div>");
+      	$(target).find('.preview-replace, .preview-album').replaceWith("<div data-album='" + api + "' class='preview preview-album' style='background-image:url(" + data.data[0].link + ")'></div>");
 
       },
       error: function(request, status, message) {
@@ -85,15 +85,15 @@ function getEntireAlbum(api){
       			captionDescription = captionDescription.replace('"',"'");
       		}
 
-      		$('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link.replace("http","https") + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
+      		$('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
 
       	}
 
       	$('.album-thumbnails').find("img").first().addClass("active-thumb");
 
-      	$('.large-album').css("background-image", "url(" + data.data[0].link.replace("http","https") + ")" );
+      	$('.large-album').css("background-image", "url(" + data.data[0].link + ")" );
 
-      	$('.shine-expand .large-album').zoom({url: data.data[0].link.replace("http","https"), on: 'click'});
+      	$('.shine-expand .large-album').zoom({url: data.data[0].link, on: 'click'});
 
       	$('.album-captions').html("");
 
@@ -552,11 +552,11 @@ function getGalleryImage(api, target){
 
                 albumAPI = "https://api.imgur.com/3/album/" + data.data.id + "/images";
 
-                $(target).find('.preview-replace').replaceWith("<div data-album='" + albumAPI + "' class='preview preview-album' style='background-image:url(" + data.data.images[0].link.replace("http","https") + ")'></div>");
+                $(target).find('.preview-replace').replaceWith("<div data-album='" + albumAPI + "' class='preview preview-album' style='background-image:url(" + data.data.images[0].link + ")'></div>");
 
           }else{
 
-                getImageFromServer( data.data.images[0].link.replace("http","https") , data.data.images[0].id , target);
+                getImageFromServer( data.data.images[0].link , data.data.images[0].id , target);
 
           }
 
@@ -1668,15 +1668,15 @@ function getCommentAlbumImages( api ){
             captionDescription = captionDescription.replace('"',"'");
           }
 
-          $('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link.replace("http","https") + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
+          $('.album-thumbnails').append('<img data-title="' + captionTitle + '" data-description="' + captionDescription + '" data-image="' + data.data[i].link + '" src="//i.imgur.com/' + data.data[i].id + 't.jpg" />');
 
         }
 
         $('.album-thumbnails').find("img").first().addClass("active-thumb");
 
-        $('.large-album').css("background-image", "url(" + data.data[0].link.replace("http","https") + ")" );
+        $('.large-album').css("background-image", "url(" + data.data[0].link + ")" );
 
-        $('.shine-expand .large-album').zoom({url: data.data[0].link.replace("http","https"), on: 'click'});
+        $('.shine-expand .large-album').zoom({url: data.data[0].link, on: 'click'});
 
         $('.album-captions').html("");
 
