@@ -70,8 +70,6 @@ function getEntireAlbum(api){
       dataType: 'json',
       success: function(data) {
 
-        console.log(data);
-
       	for( i = 0; i < data.data.length; i++ ){
 
       		captionTitle = data.data[i].title;
