@@ -680,9 +680,9 @@ $('body').on('click','div.content div#siteTable.linklisting > .thing:not(.shine-
 
 				      	$(theExpand).find('.album-thumbnails').find("img").first().addClass("active-thumb");
 
-				      	$(theExpand).find('.large-album').css("background-image", "url(" + data.data[0].link.replace("http","https") + ")" );
+				      	$(theExpand).find('.large-album').css("background-image", "url(" + data.data[0].link + ")" );
 
-				      	$(theExpand).find('.large-album').zoom({url: data.data[0].link.replace("http","https"), on: 'click'});
+				      	$(theExpand).find('.large-album').zoom({url: data.data[0].link, on: 'click'});
 
 				      	if( data.data[0].title != null || data.data[0].description != null ){
 
